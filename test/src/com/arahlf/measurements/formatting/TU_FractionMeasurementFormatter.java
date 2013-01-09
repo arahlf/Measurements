@@ -11,7 +11,7 @@ import com.arahlf.measurements.Unit;
 public class TU_FractionMeasurementFormatter extends TestCase {
     @Test
     public void testZeroLengthMeasurement() {
-        _measurement = new Measurement("0", INCH);
+        _measurement = Measurement.create("0", INCH);
         _formatter = new FractionMeasurementFormatter(4, FEET_INCHES);
         
         _verify("0in");
@@ -19,7 +19,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testOnlyNecessaryUnitsAreUsed() {
-        _measurement = new Measurement("48", INCH);
+        _measurement = Measurement.create("48", INCH);
         _formatter = new FractionMeasurementFormatter(4, FEET_INCHES);
         
         _verify("4ft");
@@ -27,7 +27,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testThreeUnits() {
-        _measurement = new Measurement("89", INCH);
+        _measurement = Measurement.create("89", INCH);
         _formatter = new FractionMeasurementFormatter(4, YARD_FEET_INCHES);
         
         _verify("2yd 1ft 5in");
@@ -35,7 +35,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testThreeUnitsWithExactFraction() {
-        _measurement = new Measurement("89.25", INCH);
+        _measurement = Measurement.create("89.25", INCH);
         _formatter = new FractionMeasurementFormatter(4, YARD_FEET_INCHES);
         
         _verify("2yd 1ft 5-1/4in");
@@ -43,7 +43,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testThreeUnitsWithEstimateFraction() {
-        _measurement = new Measurement("1.89", INCH);
+        _measurement = Measurement.create("1.89", INCH);
         _formatter = new FractionMeasurementFormatter(8, YARD_FEET_INCHES);
         
         _verify("~1-7/8in");
@@ -51,7 +51,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFloatingPointNumbersAreAccurate() {
-        _measurement = new Measurement(".875", INCH);
+        _measurement = Measurement.create(".875", INCH);
         _formatter = new FractionMeasurementFormatter(8, YARD_FEET_INCHES);
         
         _verify("7/8in");
@@ -59,7 +59,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testNegativeEstimatedFraction() {
-        _measurement = new Measurement("-.876", INCH);
+        _measurement = Measurement.create("-.876", INCH);
         _formatter = new FractionMeasurementFormatter(8, YARD_FEET_INCHES);
         
         _verify("~-7/8in");
@@ -67,7 +67,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFractionRoundUp() {
-        _measurement = new Measurement("6552", MILLIMETER);
+        _measurement = Measurement.create("6552", MILLIMETER);
         _formatter = new FractionMeasurementFormatter(4, FEET_INCHES);
         
         _verify("~21ft 6in");
@@ -75,7 +75,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFractionRoundDown() {
-        _measurement = new Measurement("36.001", INCH);
+        _measurement = Measurement.create("36.001", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("~3ft");
@@ -83,7 +83,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFractionRoundUpNextGroupIfApplicable() {
-        _measurement = new Measurement("35.99", INCH);
+        _measurement = Measurement.create("35.99", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("~3ft");
@@ -91,7 +91,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFractionRoundUpMultipleGroups() {
-        _measurement = new Measurement("71.99", INCH);
+        _measurement = Measurement.create("71.99", INCH);
         _formatter = new FractionMeasurementFormatter(8, YARD_FEET_INCHES);
         
         _verify("~2yd");
@@ -99,7 +99,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testEstimateFractionWithNegativeNumber() {
-        _measurement = new Measurement("-13.876", INCH);
+        _measurement = Measurement.create("-13.876", INCH);
         _formatter = new FractionMeasurementFormatter(8, INCHES);
         
         _verify("~-13-7/8in");
@@ -107,7 +107,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testNegativeFractionWithWholeNumber() {
-        _measurement = new Measurement("-25.126", INCH);
+        _measurement = Measurement.create("-25.126", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("~-2ft 1-1/8in");
@@ -115,7 +115,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testExactMeasurementDoesNotDisplayAsEstimate() {
-        _measurement = new Measurement(10, FOOT).add(new Measurement(2, INCH));
+        _measurement = Measurement.create(10, FOOT).add(Measurement.create(2, INCH));
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("10ft 2in");
@@ -123,7 +123,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testPositiveMeasurementRoundedDownToZero() {
-        _measurement = new Measurement(".0009", INCH);
+        _measurement = Measurement.create(".0009", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("~0in");
@@ -131,7 +131,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testNegativeMeasurementRoundedUpToZero() {
-        _measurement = new Measurement(".0001", INCH);
+        _measurement = Measurement.create(".0001", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("~0in");
@@ -139,7 +139,7 @@ public class TU_FractionMeasurementFormatter extends TestCase {
     
     @Test
     public void testFractionIsNotUnnecessarilyRoundedUp() {
-        _measurement = new Measurement(".125", INCH);
+        _measurement = Measurement.create(".125", INCH);
         _formatter = new FractionMeasurementFormatter(8, FEET_INCHES);
         
         _verify("1/8in");

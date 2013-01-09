@@ -44,10 +44,10 @@ public abstract class AbstractMeasurementFormatter implements MeasurementFormatt
             BigDecimal quotient = result[0].stripTrailingZeros();
             BigDecimal remainder = result[1];
             
-            Measurement piece = new Measurement(quotient, unit);
+            Measurement piece = Measurement.create(quotient, unit);
             
             if (i == _units.size() - 1) {
-                piece = piece.add(new Measurement(remainder, MILLIMETER)); // add the remainder to the last piece
+                piece = piece.add(Measurement.create(remainder, MILLIMETER)); // add the remainder to the last piece
             }
             else {
                 remainingMillis = remainder;
@@ -75,8 +75,8 @@ public abstract class AbstractMeasurementFormatter implements MeasurementFormatt
             
             boolean canRoundUp = current.getLengthInMillimeters().abs().compareTo(next.getUnit().getMillimetersPerUnit()) == 0;
             if (canRoundUp) {
-                pieces.set(i, new Measurement(0, current.getUnit()));
-                pieces.set(i - 1, next.add(new Measurement(next.isNegativeLength() ? -1 : 1, next.getUnit())));
+                pieces.set(i, Measurement.create(0, current.getUnit()));
+                pieces.set(i - 1, next.add(Measurement.create(next.isNegativeLength() ? -1 : 1, next.getUnit())));
             }
         }
         
@@ -91,7 +91,7 @@ public abstract class AbstractMeasurementFormatter implements MeasurementFormatt
             
             if (piece.isNegativeLength()) {
                 if (containsNegativePiece) {
-                    pieces.set(i, new Measurement(piece.getLength().abs(), piece.getUnit()));
+                    pieces.set(i, Measurement.create(piece.getLength().abs(), piece.getUnit()));
                 }
                 else {
                     containsNegativePiece = true;
