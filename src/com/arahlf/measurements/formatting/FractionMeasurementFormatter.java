@@ -12,7 +12,7 @@ import com.arahlf.measurements.Unit;
 
 public class FractionMeasurementFormatter extends AbstractMeasurementFormatter {
     
-    public FractionMeasurementFormatter(int denominator, Unit[] units) {
+    public FractionMeasurementFormatter(int denominator, Unit... units) {
         super(Arrays.asList(units));
         
         _denominator = denominator;

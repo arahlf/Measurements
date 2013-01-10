@@ -10,7 +10,7 @@ import com.arahlf.measurements.Unit;
 
 public class DecimalMeasurementFormatter extends AbstractMeasurementFormatter {
     
-    public DecimalMeasurementFormatter(int scale, Unit[] units) {
+    public DecimalMeasurementFormatter(int scale, Unit... units) {
         super(Arrays.asList(units));
         
         _scale = scale;

@@ -86,7 +86,7 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement that is the sum of the two.
+     * Returns a new Measurement that is the sum of the two.  The original Measurement's Unit is maintained.
      * @param measurement The Measurement to add
      * @return Measurement that is the sum of the two
      */
@@ -97,7 +97,7 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement that is the difference of the two.
+     * Returns a new Measurement that is the difference of the two.  The original Measurement's Unit is maintained.
      * @param measurement The measurement to subtract
      * @return Measurement that is the difference of the two
      */
@@ -108,7 +108,7 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement that is the product of the two.
+     * Returns a new Measurement that is the product of the two.  The original Measurement's Unit is maintained.
      * @param measurement The Measurement to multiply by
      * @return Measurement that is the product of the two
      */
@@ -119,7 +119,7 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement that is the quotient of the two.
+     * Returns a new Measurement that is the quotient of the two.  The original Measurement's Unit is maintained.
      * @param measurement The Measurement to divide by
      * @return Measurement that is the quotient of the two
      */
@@ -141,7 +141,8 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement with the specified scale (number of decimal places).
+     * Returns a new Measurement with the specified scale (number of decimal places).  Trailing
+     * zeros are stripped.
      * @param scale The scale for the new Measurement.
      * @return Measurement with the specified scale (number of decimal places).
      */
@@ -150,7 +151,8 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement with the specified scale (number of decimal places).
+     * Returns a new Measurement with the specified scale (number of decimal places).  Trailing
+     * zeros are stripped.
      * @param scale The scale for the new Measurement.
      * @param roundingMode The RoundingMode to use if necessary.
      * @return Measurement with the specified scale (number of decimal places).
