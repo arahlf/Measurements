@@ -5,15 +5,17 @@ Measurements is a simple, dependency-free library for interacting with imperial 
 
 How To Use
 ========
-For convienence, I've included the packaged jar file in the root directory of the master branch.  You can also build the source code yourself (if you're into that kind of thing).
+I've included the packaged jar file in the root directory of the master branch.  You can also build the source code yourself (if you're into that kind of thing).
 
 This library has no 3rd-party dependencies, so just add the jar file to your classpath and you're all set.
+
+For more information, take a look at the [JavaDoc](http://arahlf.github.com/Measurements/).
 
 
 Code Samples
 ========
 
-
+When working with the ``Unit`` enum, it's helpful (from a clean-code perspective) to use static imports.
 
 **Basic Arithmetic Operations:**
 
