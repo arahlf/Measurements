@@ -15,10 +15,23 @@ Code Samples
 
 
 
-Basic Arithmetic Operations:
+**Basic Arithmetic Operations:**
 
     Measurement augend = Measurement.create(3, Unit.FOOT);
     Measurement addend = Measurement.create(6, Unit.INCH);
     Measurement sum = augend.add(addend);
     
     sum.toString(); // "3.5ft"
+
+**Scaling:**
+
+    Measurement measurement = Measurement.create("9.748", Unit.MILLIMETER);
+        
+    measurement.scale(2).toString(); // "9.75mm"
+
+**Equality:**
+
+    Measurement foot = Measurement.create(1, Unit.FOOT);
+    Measurement footInInches = Measurement.create(12, Unit.INCH);
+    
+    foot.equals(footInInches); // true
