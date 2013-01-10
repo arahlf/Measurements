@@ -15,10 +15,41 @@ Code Samples
 
 
 
-Basic Arithmetic Operations:
+**Basic Arithmetic Operations:**
 
     Measurement augend = Measurement.create(3, Unit.FOOT);
     Measurement addend = Measurement.create(6, Unit.INCH);
     Measurement sum = augend.add(addend);
     
     sum.toString(); // "3.5ft"
+
+**Scaling:**
+
+    Measurement measurement = Measurement.create("9.748", Unit.MILLIMETER);
+        
+    measurement.scale(2).toString(); // "9.75mm"
+
+**Equality:**
+
+    Measurement foot = Measurement.create(1, Unit.FOOT);
+    Measurement footInInches = Measurement.create(12, Unit.INCH);
+    
+    foot.equals(footInInches); // true
+
+**Formatting:**
+
+    // Decimals
+    Measurement measurement = Measurement.create("37.567", Unit.CENTIMETER);
+    MeasurementFormatter formatter = new DecimalMeasurementFormatter(1, Unit.MILLIMETER);
+    
+    formatter.format(measurement); // "~375.7mm"
+    
+    formatter = new DecimalMeasurementFormatter(1, Unit.CENTIMETER, Unit.MILLIMETER);
+    
+    formatter.format(measurement); // "~37cm 5.7mm"
+
+    // Fractions
+    Measurement measurement = Measurement.create("5.875", Unit.INCH);
+    MeasurementFormatter formatter = new FractionMeasurementFormatter(8, Unit.INCH);
+    
+    formatter.format(measurement); // "5-7/8in"
