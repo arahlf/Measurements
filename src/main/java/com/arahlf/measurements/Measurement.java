@@ -33,7 +33,7 @@ public final class Measurement {
     }
     
     private Measurement(BigDecimal length, Unit desiredUnit, Unit inputUnit) {
-        _millis = _stripTrailingZeros(length.multiply(inputUnit.getMillimetersPerUnit()));
+        _millis = length.multiply(inputUnit.getMillimetersPerUnit()).stripTrailingZeros();
         _unit = desiredUnit;
     }
     
@@ -42,7 +42,7 @@ public final class Measurement {
      * @return the length of the Measurement
      */
     public BigDecimal getLength() {
-        return _stripTrailingZeros(_millis.divide(_unit.getMillimetersPerUnit(), SCALE, ROUNDING_MODE));
+        return _millis.divide(_unit.getMillimetersPerUnit(), SCALE, ROUNDING_MODE).stripTrailingZeros();
     }
     
     /**
@@ -93,7 +93,7 @@ public final class Measurement {
     public Measurement add(Measurement measurement) {
         BigDecimal lengthInMillis = _millis.add(measurement.getLengthInMillimeters());
         
-        return new Measurement(_stripTrailingZeros(lengthInMillis), _unit, MILLIMETER);
+        return new Measurement(lengthInMillis.stripTrailingZeros(), _unit, MILLIMETER);
     }
     
     /**
@@ -104,7 +104,7 @@ public final class Measurement {
     public Measurement subtract(Measurement measurement) {
         BigDecimal lengthInMillis = _millis.subtract(measurement.getLengthInMillimeters());
         
-        return new Measurement(_stripTrailingZeros(lengthInMillis), _unit, MILLIMETER);
+        return new Measurement(lengthInMillis.stripTrailingZeros(), _unit, MILLIMETER);
     }
     
     /**
@@ -115,7 +115,7 @@ public final class Measurement {
     public Measurement multiply(Measurement measurement) {
         BigDecimal length = getLength().multiply(measurement.convert(_unit).getLength());
         
-        return create(_stripTrailingZeros(length), _unit);
+        return create(length.stripTrailingZeros(), _unit);
     }
     
     /**
@@ -126,7 +126,7 @@ public final class Measurement {
     public Measurement divide(Measurement measurement) {
         BigDecimal length = getLength().divide(measurement.convert(_unit).getLength(), SCALE, ROUNDING_MODE);
         
-        return create(_stripTrailingZeros(length), _unit);
+        return create(length.stripTrailingZeros(), _unit);
     }
     
     /**
@@ -137,7 +137,7 @@ public final class Measurement {
     public Measurement convert(Unit unit) {
         BigDecimal length = _millis.divide(unit.getMillimetersPerUnit(), SCALE, ROUNDING_MODE);
         
-        return create(_stripTrailingZeros(length), unit);
+        return create(length.stripTrailingZeros(), unit);
     }
     
     /**
@@ -147,7 +147,7 @@ public final class Measurement {
      * @return Measurement with the specified scale (number of decimal places).
      */
     public Measurement scale(int scale) {
-        return create(_stripTrailingZeros(getLength().setScale(scale, ROUNDING_MODE)), _unit);
+        return create(getLength().setScale(scale, ROUNDING_MODE).stripTrailingZeros(), _unit);
     }
     
     /**
@@ -158,7 +158,7 @@ public final class Measurement {
      * @return Measurement with the specified scale (number of decimal places).
      */
     public Measurement scale(int scale, RoundingMode roundingMode) {
-        return create(_stripTrailingZeros(getLength().setScale(scale, roundingMode)), _unit);
+        return create(getLength().setScale(scale, roundingMode).stripTrailingZeros(), _unit);
     }
     
     /**
@@ -202,11 +202,6 @@ public final class Measurement {
     @Override
     public int hashCode() {
         return getLengthInMillimeters().hashCode();
-    }
-    
-    private BigDecimal _stripTrailingZeros(BigDecimal length) {
-        // stripTrailingZeros doesn't work on 0 :'(
-        return length.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : length.stripTrailingZeros();
     }
     
     private final BigDecimal _millis;
