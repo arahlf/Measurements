@@ -5,7 +5,7 @@ public class Fractions {
      * Builds a fractional string representation of a number.
      * @param number The number to turn into a fraction string.
      * @param precision The precision of the fractional denominator to use, must be a multiple of 2.
-     * @return
+     * @return Fractional string representation of the number.
      */
     public static String getFractionString(final double number, final int precision) {
         if (precision % 2 != 0) {

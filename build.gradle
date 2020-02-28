@@ -10,3 +10,7 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.4'
 }
+
+task generateJavadocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+}

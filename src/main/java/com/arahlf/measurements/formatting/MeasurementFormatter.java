@@ -6,6 +6,5 @@ import com.arahlf.measurements.Measurement;
 
 public interface MeasurementFormatter extends Serializable {
     
-    public String format(Measurement measurement);
-    
+    String format(Measurement measurement);
 }

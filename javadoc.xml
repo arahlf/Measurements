@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="javadoc">
-    <target name="javadoc">
-        <javadoc access="public" author="true" classpath="test/javalib/junit-4.11.jar" destdir="doc" doctitle="Measurement JavaDoc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.6" sourcefiles="src/com/arahlf/measurements/formatting/FractionMeasurementFormatter.java,src/com/arahlf/measurements/Unit.java,src/com/arahlf/measurements/Measurement.java,src/com/arahlf/measurements/formatting/Fractions.java,src/com/arahlf/measurements/formatting/AbstractMeasurementFormatter.java,src/com/arahlf/measurements/formatting/DecimalMeasurementFormatter.java,src/com/arahlf/measurements/formatting/MeasurementFormatter.java" sourcepath="src:test/src" splitindex="true" use="true" version="true"/>
-    </target>
-</project>
