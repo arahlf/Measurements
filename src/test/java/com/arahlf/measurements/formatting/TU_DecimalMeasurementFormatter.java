@@ -1,14 +1,13 @@
 package com.arahlf.measurements.formatting;
 
 import static com.arahlf.measurements.Unit.*;
-import junit.framework.TestCase;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.arahlf.measurements.Measurement;
 import com.arahlf.measurements.Unit;
+import org.junit.jupiter.api.Test;
 
-public class TU_DecimalMeasurementFormatter extends TestCase {
+public class TU_DecimalMeasurementFormatter {
     @Test
     public void testZeroLengthMeasurement() {
         _measurement = Measurement.create("0", INCH);
@@ -155,7 +154,7 @@ public class TU_DecimalMeasurementFormatter extends TestCase {
     
     private void _verify(String expected) {
         String actual = _formatter.format(_measurement);
-        assertEquals("expected <" + expected + "> actual <" + actual + ">", expected, actual);
+        assertEquals(expected, actual);
     }
     
     private Measurement _measurement;

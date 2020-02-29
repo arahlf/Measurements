@@ -1,15 +1,13 @@
 package com.arahlf.measurements;
 
+import org.junit.jupiter.api.Test;
+
 import static com.arahlf.measurements.Unit.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import junit.framework.TestCase;
-
-import org.junit.Test;
 
 public class TU_Measurement {
     @Test
@@ -147,14 +145,14 @@ public class TU_Measurement {
         _assertMeasurement(measurement, "-1005mm", "-1005");
     }
     
-    @Test(expected =  NumberFormatException.class)
+    @Test
     public void testParseBadNumber() {
-        Measurement.parse("6..5ft");
+        assertThrows(NumberFormatException.class, () -> Measurement.parse("6..5ft"));
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testParseBadUnit() {
-        Measurement.parse("9.875inn");
+        assertThrows(IllegalArgumentException.class, () -> Measurement.parse("9.875inn"));
     }
     
     @Test

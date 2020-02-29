@@ -1,12 +1,11 @@
 package com.arahlf.measurements;
 
-import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import com.arahlf.measurements.formatting.Fractions;
+import org.junit.jupiter.api.Test;
 
-public class TU_Fractions extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TU_Fractions {
     @Test
     public void testEdgeCases() {
         assertEquals("0", Fractions.getFractionString(0, 4));
