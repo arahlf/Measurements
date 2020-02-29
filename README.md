@@ -14,8 +14,6 @@ For more information, take a look at the [JavaDoc](http://arahlf.github.com/Meas
 Code Samples
 ========
 
-When working with the ``Unit`` enum, it's helpful (from a clean-code perspective) to use static imports.
-
 **Basic Arithmetic Operations:**
 
     Measurement a = Measurement.create(3, Unit.FOOT);

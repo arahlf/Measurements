@@ -1,6 +1,7 @@
 package com.arahlf.measurements;
 
 import static com.arahlf.measurements.Unit.*;
+import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
@@ -10,7 +11,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class TU_Measurement extends TestCase {
+public class TU_Measurement {
     @Test
     public void testAdd() {
         Measurement sum;
@@ -55,28 +56,28 @@ public class TU_Measurement extends TestCase {
     public void testMultiply() {
         Measurement product;
         
-        product = Measurement.create("3", INCH).multiply(Measurement.create("3", FOOT));
-        _assertMeasurement(product, "108in", "2743.2");
+        product = Measurement.create("3", INCH).multiply(new BigDecimal("3"));
+        _assertMeasurement(product, "9in", "228.6");
         
-        product = Measurement.create("8.25", CENTIMETER).multiply(Measurement.create("400", METER));
-        _assertMeasurement(product, "330000cm", "3300000");
+        product = Measurement.create("8.25", CENTIMETER).multiply(new BigDecimal("400"));
+        _assertMeasurement(product, "3300cm", "33000");
         
-        product = Measurement.create("109.7", MILLIMETER).multiply(Measurement.create("3.125", FOOT));
-        _assertMeasurement(product, "104489.25mm", "104489.25");
+        product = Measurement.create("109.7", MILLIMETER).multiply(new BigDecimal("3.125"));
+        _assertMeasurement(product, "342.8125mm", "342.8125");
     }
     
     @Test
     public void testDivide() {
         Measurement quotient;
         
-        quotient = Measurement.create("9", CENTIMETER).divide(Measurement.create("30", MILLIMETER));
-        _assertMeasurement(quotient, "3cm", "30");
+        quotient = Measurement.create("9", CENTIMETER).divide(new BigDecimal("30"));
+        _assertMeasurement(quotient, "0.3cm", "3");
         
-        quotient = Measurement.create("12", FOOT).divide(Measurement.create("2.23", YARD));
-        _assertMeasurement(quotient, "1.7937219731ft", "546.72645740088");
+        quotient = Measurement.create("12", FOOT).divide(new BigDecimal("2.23"));
+        _assertMeasurement(quotient, "5.3811659193ft", "1640.17937220264");
         
-        quotient = Measurement.create("31", FOOT).divide(Measurement.create("3.9", METER));
-        _assertMeasurement(quotient, "2.4227692308ft", "738.46006154784");
+        quotient = Measurement.create("31", FOOT).divide(new BigDecimal("3.9"));
+        _assertMeasurement(quotient, "7.9487179487ft", "2422.76923076376");
     }
     
     @Test
@@ -146,24 +147,14 @@ public class TU_Measurement extends TestCase {
         _assertMeasurement(measurement, "-1005mm", "-1005");
     }
     
-    @Test
+    @Test(expected =  NumberFormatException.class)
     public void testParseBadNumber() {
-        try {
-            Measurement.parse("6..5ft");
-            fail();
-        }
-        catch (NumberFormatException expected) {
-        }
+        Measurement.parse("6..5ft");
     }
     
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testParseBadUnit() {
-        try {
-            Measurement.parse("9.875inn");
-            fail();
-        }
-        catch (IllegalArgumentException expected) {
-        }
+        Measurement.parse("9.875inn");
     }
     
     @Test

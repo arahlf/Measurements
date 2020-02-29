@@ -108,23 +108,23 @@ public final class Measurement {
     }
     
     /**
-     * Returns a new Measurement that is the product of the two.  The original Measurement's Unit is maintained.
-     * @param measurement The Measurement to multiply by
+     * Returns a new Measurement that is the product of the two. The original Measurement's Unit is maintained.
+     * @param multiplicand The amount to multiply by
      * @return Measurement that is the product of the two
      */
-    public Measurement multiply(Measurement measurement) {
-        BigDecimal length = getLength().multiply(measurement.convert(_unit).getLength());
+    public Measurement multiply(BigDecimal multiplicand) {
+        BigDecimal length = getLength().multiply(multiplicand);
         
         return create(length.stripTrailingZeros(), _unit);
     }
     
     /**
-     * Returns a new Measurement that is the quotient of the two.  The original Measurement's Unit is maintained.
-     * @param measurement The Measurement to divide by
+     * Returns a new Measurement that is the quotient of the two. The original Measurement's Unit is maintained.
+     * @param divisor The amount to divide by
      * @return Measurement that is the quotient of the two
      */
-    public Measurement divide(Measurement measurement) {
-        BigDecimal length = getLength().divide(measurement.convert(_unit).getLength(), SCALE, ROUNDING_MODE);
+    public Measurement divide(BigDecimal divisor) {
+        BigDecimal length = getLength().divide(divisor, SCALE, ROUNDING_MODE);
         
         return create(length.stripTrailingZeros(), _unit);
     }
